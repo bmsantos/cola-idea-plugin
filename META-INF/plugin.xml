@@ -1,0 +1,46 @@
+<idea-plugin version="2">
+  <id>com.github.bmsantos.idea.cola</id>
+  <name>COLA Tests IDEA Plugin</name>
+  <version>0.1.0</version>
+  <vendor email="bmrosantos@gmail.com" url="http://http://bmsantos.github.io/cola-maven-plugin/">COLA Tests</vendor>
+
+  <description><![CDATA[
+        COLA Tests IDEA Plugin is a small framework designed to facilitate the usage of JUnit tests with Gherkin stories.
+
+        It does it by injecting the stories in the JUnit POJO and, like this, allowing the user to make use of any
+        JUnitRunner.
+    ]]></description>
+
+  <change-notes><![CDATA[
+        Introduce COLA Tests IDEA Plugin.
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <depends>com.intellij.modules.lang</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+      <!-- Add your extensions here -->
+      <applicationConfigurable groupId="build" displayName="COLA Tests" instance="com.github.bmsantos.idea.cola.ColaSettingsForm" />
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+      <component>
+          <implementation-class>com.github.bmsantos.idea.cola.ColaTestsProjectComponent</implementation-class>
+      </component>
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
