@@ -1,9 +1,5 @@
 package com.github.bmsantos.idea.cola;
 
-import com.intellij.ide.DataManager;
-import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.openapi.actionSystem.DataContext;
-import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
@@ -12,85 +8,102 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
+/*
+ * COLA Tests = BDD + JUnit
+ * Home: http://bmsantos.github.io/cola-tests/
+ *
+ * Created by: Bruno Santos
+ *
+ * Contact: bmrosantos@gmail.com
+ *
+ * License:
+ * Copyright 2001-2005 The Apache Software Foundation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 public class ColaSettingsForm implements Configurable {
 
-    public static final Project GET_PROJECT = null;
+  public static final Project GET_PROJECT = null;
 
-    private JTextField includeFilter;
-    private JTextField excludeFilter;
-    private JPanel colaTestsPanel;
-    private JTextField baseClass;
-    private JTextField testMethod;
-    private JCheckBox colaTestsEnabled;
+  private JTextField includeFilter;
+  private JTextField excludeFilter;
+  private JPanel colaTestsPanel;
+  private JTextField baseClass;
+  private JTextField testMethod;
+  private JCheckBox colaTestsEnabled;
 
-    private final ConfigurationAssessor config;
+  private final ConfigurationAssessor config;
 
-    public ColaSettingsForm() {
-        config = new ConfigurationAssessor(GET_PROJECT);
-    }
+  public ColaSettingsForm() {
+    config = new ConfigurationAssessor(GET_PROJECT);
+  }
 
-    @Nls
-    @Override
-    public String getDisplayName() {
-        return "COLA Tests";
-    }
+  @Nls
+  @Override
+  public String getDisplayName() {
+    return "COLA Tests";
+  }
 
-    @Nullable
-    @Override
-    public String getHelpTopic() {
-        return "COLA Tests";
-    }
+  @Nullable
+  @Override
+  public String getHelpTopic() {
+    return "COLA Tests";
+  }
 
-    @Nullable
-    @Override
-    public JComponent createComponent() {
-        return colaTestsPanel;
-    }
+  @Nullable
+  @Override
+  public JComponent createComponent() {
+    return colaTestsPanel;
+  }
 
-    @Override
-    public boolean isModified() {
-        updateEnabledStates(colaTestsEnabled.isSelected());
-        return !includeFilter.getText().equals(config.getIncludeFilter()) ||
-               !excludeFilter.getText().equals(config.getExcludeFilter()) ||
-               !baseClass.getText().equals(config.getIdeBaseClass()) ||
-               !testMethod.getText().equals(config.getIdeTestMethod()) ||
-               colaTestsEnabled.isSelected() != config.getColaTestsEnabled();
-    }
+  @Override
+  public boolean isModified() {
+    updateEnabledStates(colaTestsEnabled.isSelected());
+    return !includeFilter.getText().equals(config.getIncludeFilter()) ||
+      !excludeFilter.getText().equals(config.getExcludeFilter()) ||
+      !baseClass.getText().equals(config.getIdeBaseClass()) ||
+      !testMethod.getText().equals(config.getIdeTestMethod()) ||
+      colaTestsEnabled.isSelected() != config.getColaTestsEnabled();
+  }
 
-    @Override
-    public void apply() throws ConfigurationException {
-        config.setIncludeFilter(includeFilter.getText());
-        config.setExcludeFilter(excludeFilter.getText());
-        config.setIdeBaseClass(baseClass.getText());
-        config.setIdeTestMethod(testMethod.getText());
-        config.setColaTestsEnabled(colaTestsEnabled.isSelected());
-    }
+  @Override
+  public void apply() throws ConfigurationException {
+    config.setIncludeFilter(includeFilter.getText());
+    config.setExcludeFilter(excludeFilter.getText());
+    config.setIdeBaseClass(baseClass.getText());
+    config.setIdeTestMethod(testMethod.getText());
+    config.setColaTestsEnabled(colaTestsEnabled.isSelected());
+  }
 
-    @Override
-    public void reset() {
-        includeFilter.setText(config.getIncludeFilter());
-        excludeFilter.setText(config.getExcludeFilter());
-        baseClass.setText(config.getIdeBaseClass());
-        testMethod.setText(config.getIdeTestMethod());
-        colaTestsEnabled.setSelected(config.getColaTestsEnabled());
-        updateEnabledStates(colaTestsEnabled.isSelected());
-    }
+  @Override
+  public void reset() {
+    includeFilter.setText(config.getIncludeFilter());
+    excludeFilter.setText(config.getExcludeFilter());
+    baseClass.setText(config.getIdeBaseClass());
+    testMethod.setText(config.getIdeTestMethod());
+    colaTestsEnabled.setSelected(config.getColaTestsEnabled());
+    updateEnabledStates(colaTestsEnabled.isSelected());
+  }
 
-    @Override
-    public void disposeUIResources() {
-        // empty
-    }
+  @Override
+  public void disposeUIResources() {
+    // empty
+  }
 
-    private PropertiesComponent getProjectProperties() {
-        DataContext dataContext = DataManager.getInstance().getDataContext();
-        Project project = DataKeys.PROJECT.getData(dataContext);
-        return PropertiesComponent.getInstance(project);
-    }
-
-    private void updateEnabledStates(final boolean enabled) {
-        includeFilter.setEnabled(enabled);
-        excludeFilter.setEnabled(enabled);
-        baseClass.setEnabled(enabled);
-        testMethod.setEnabled(enabled);
-    }
+  private void updateEnabledStates(final boolean enabled) {
+    includeFilter.setEnabled(enabled);
+    excludeFilter.setEnabled(enabled);
+    baseClass.setEnabled(enabled);
+    testMethod.setEnabled(enabled);
+  }
 }

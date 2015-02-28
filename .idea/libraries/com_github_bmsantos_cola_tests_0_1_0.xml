@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="com.github.bmsantos:cola-tests:0.1.0" type="repository">
+    <properties maven-id="com.github.bmsantos:cola-tests:0.1.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/bmsantos/cola-tests/0.1.0/cola-tests-0.1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/info/cukes/gherkin/2.12.2/gherkin-2.12.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/sonatype/plexus/plexus-build-api/0.0.7/plexus-build-api-0.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
