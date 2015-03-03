@@ -1,12 +1,20 @@
 package com.github.bmsantos.idea.cola;
 
+import com.github.bmsantos.core.cola.exceptions.ColaExecutionException;
 import com.github.bmsantos.core.cola.main.ColaMain;
 import com.intellij.openapi.compiler.CompilationStatusListener;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.libraries.Library;
+import com.intellij.openapi.roots.libraries.LibraryTable;
+import com.intellij.openapi.roots.libraries.LibraryTablesRegistrar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.intellij.openapi.roots.OrderRootType.CLASSES;
 import static java.util.Arrays.asList;
 
 /* 
@@ -35,10 +43,14 @@ public class ColaCompilerListener implements CompilationStatusListener {
 
   protected IdeaColaProvider provider;
   protected ConfigurationAssessor config;
+  private final LibraryTable libraryTable;
 
   public ColaCompilerListener(final Project project) {
     provider = getIdeaColaProvider();
     config = getConfigurationAssessor(project);
+    LibraryTablesRegistrar libraryTablesRegistrar = LibraryTablesRegistrar.getInstance();
+    libraryTable = libraryTablesRegistrar.getLibraryTable(project);
+
   }
 
   @Override
@@ -53,17 +65,23 @@ public class ColaCompilerListener implements CompilationStatusListener {
     log.debug("Output Root: " + outputRoot);
     log.debug("Relative Path: " + relativePath);
 
-    if (!config.getColaTestsEnabled()) {
-      return;
+    try {
+      if (!config.getColaTestsEnabled()) {
+        return;
+      }
+
+      provider.setTargetDirectory(outputRoot);
+      final List<String> classpathElements = getClasspathElements();
+      classpathElements.add(outputRoot);
+      provider.setClasspathElements(classpathElements);
+      provider.setIncludes(config.getIncludeFilter());
+      provider.setExcludes(config.getExcludeFilter());
+      provider.setDeltas(asList(relativePath));
+
+      getColaMain().execute(provider);
+    } catch (ColaExecutionException e) {
+      log.error(e.getMessage(), e);
     }
-
-    provider.setTargetDirectory(outputRoot);
-    provider.setClasspathElements(asList(outputRoot));
-    provider.setIncludes(config.getIncludeFilter());
-    provider.setExcludes(config.getExcludeFilter());
-    provider.setDeltas(asList(relativePath));
-
-    getColaMain().execute(provider);
   }
 
   protected IdeaColaProvider getIdeaColaProvider() {
@@ -76,5 +94,16 @@ public class ColaCompilerListener implements CompilationStatusListener {
 
   protected ColaMain getColaMain() {
     return new ColaMain(config.getIdeBaseClass(), config.getIdeTestMethod());
+  }
+
+  private List<String> getClasspathElements() {
+    final List<String> classpathElements = new ArrayList<>();
+    for (final Library lib : libraryTable.getLibraries()) {
+      log.debug(lib.getName());
+      for (final String url : lib.getUrls(CLASSES)) {
+        classpathElements.add(url.replace("jar://", "").replace("!/", ""));
+      }
+    }
+    return classpathElements;
   }
 }

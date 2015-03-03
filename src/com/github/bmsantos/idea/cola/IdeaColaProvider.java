@@ -51,7 +51,7 @@ public class IdeaColaProvider implements IColaProvider {
 
   @Override
   public URLClassLoader getTargetClassLoader() throws Exception {
-    final List<URL> urls = new ArrayList<>();
+    final List<URL> urls = new ArrayList<URL>();
 
     for (final String path : classpathElements) {
       urls.add(new File(path).toURI().toURL());
@@ -86,7 +86,7 @@ public class IdeaColaProvider implements IColaProvider {
   }
 
   private List<String> filter(final List<String> deltas) {
-    final List<String> result = new ArrayList<>();
+    final List<String> result = new ArrayList<String>();
     for (final String path : deltas) {
       if (!isExcluded(path) && isIncluded(path)) {
         result.add(path);
