@@ -41,7 +41,7 @@ public class ConfigurationAssessor {
   }
 
   public String getIncludeFilter() {
-    return properties.getValue(INCLUDES, "");
+    return properties.getValue(INCLUDES, "**/*Test.class");
   }
 
   public void setIncludeFilter(final String value) {
