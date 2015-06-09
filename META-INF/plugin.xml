@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.github.bmsantos.idea.cola</id>
   <name>COLA Tests</name>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <vendor email="bmrosantos@gmail.com" url="https://github.com/bmsantos/cola-idea-plugin">COLA Tests</vendor>
 
   <description><![CDATA[
@@ -17,7 +17,7 @@
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="139"/>
+  <idea-version since-build="141"/>
 
   <depends>com.intellij.modules.lang</depends>
 
