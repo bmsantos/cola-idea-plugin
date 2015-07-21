@@ -1,4 +1,4 @@
 COLA Tests IDEA Plugin
 ======================
 
-http://bmsantos.github.io/cola-maven-plugin/
+COLA Tests [Wiki](https://github.com/bmsantos/cola-tests/wiki)

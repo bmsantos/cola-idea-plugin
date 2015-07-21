@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.github.bmsantos.idea.cola</id>
   <name>COLA Tests</name>
-  <version>0.2.0</version>
+  <version>0.4.0</version>
   <vendor email="bmrosantos@gmail.com" url="https://github.com/bmsantos/cola-idea-plugin">COLA Tests</vendor>
 
   <description><![CDATA[

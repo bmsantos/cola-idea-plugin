@@ -38,8 +38,6 @@ public class ColaSettingsForm implements Configurable {
   private JTextField includeFilter;
   private JTextField excludeFilter;
   private JPanel colaTestsPanel;
-  private JTextField baseClass;
-  private JTextField testMethod;
   private JCheckBox colaTestsEnabled;
 
   private final ConfigurationAssessor config;
@@ -71,8 +69,6 @@ public class ColaSettingsForm implements Configurable {
     updateEnabledStates(colaTestsEnabled.isSelected());
     return !includeFilter.getText().equals(config.getIncludeFilter()) ||
       !excludeFilter.getText().equals(config.getExcludeFilter()) ||
-      !baseClass.getText().equals(config.getIdeBaseClass()) ||
-      !testMethod.getText().equals(config.getIdeTestMethod()) ||
       colaTestsEnabled.isSelected() != config.getColaTestsEnabled();
   }
 
@@ -80,8 +76,6 @@ public class ColaSettingsForm implements Configurable {
   public void apply() throws ConfigurationException {
     config.setIncludeFilter(includeFilter.getText());
     config.setExcludeFilter(excludeFilter.getText());
-    config.setIdeBaseClass(baseClass.getText());
-    config.setIdeTestMethod(testMethod.getText());
     config.setColaTestsEnabled(colaTestsEnabled.isSelected());
   }
 
@@ -89,8 +83,6 @@ public class ColaSettingsForm implements Configurable {
   public void reset() {
     includeFilter.setText(config.getIncludeFilter());
     excludeFilter.setText(config.getExcludeFilter());
-    baseClass.setText(config.getIdeBaseClass());
-    testMethod.setText(config.getIdeTestMethod());
     colaTestsEnabled.setSelected(config.getColaTestsEnabled());
     updateEnabledStates(colaTestsEnabled.isSelected());
   }
@@ -103,7 +95,5 @@ public class ColaSettingsForm implements Configurable {
   private void updateEnabledStates(final boolean enabled) {
     includeFilter.setEnabled(enabled);
     excludeFilter.setEnabled(enabled);
-    baseClass.setEnabled(enabled);
-    testMethod.setEnabled(enabled);
   }
 }

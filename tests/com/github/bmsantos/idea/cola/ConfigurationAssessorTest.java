@@ -68,20 +68,4 @@ public class ConfigurationAssessorTest extends LightCodeInsightFixtureTestCase {
     // Then
     assertThat(uut.getExcludeFilter(), is(STRING_VALUE));
   }
-
-  public void testShouldSetIdeBaseClass() {
-    // When
-    uut.setIdeBaseClass(STRING_VALUE);
-
-    // Then
-    assertThat(uut.getIdeBaseClass(), is(STRING_VALUE));
-  }
-
-  public void testShouldSetIdeTestMethod() {
-    // When
-    uut.setIdeTestMethod(STRING_VALUE);
-
-    // Then
-    assertThat(uut.getIdeTestMethod(), is(STRING_VALUE));
-  }
 }

@@ -93,7 +93,7 @@ public class ColaCompilerListener implements CompilationStatusListener {
   }
 
   protected ColaMain getColaMain() {
-    return new ColaMain(config.getIdeBaseClass(), config.getIdeTestMethod());
+    return new ColaMain();
   }
 
   private List<String> getClasspathElements() {
