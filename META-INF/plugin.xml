@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.github.bmsantos.idea.cola</id>
   <name>COLA Tests</name>
-  <version>0.4.0</version>
+  <version>0.4.0.1</version>
   <vendor email="bmrosantos@gmail.com" url="https://github.com/bmsantos/cola-idea-plugin">COLA Tests</vendor>
 
   <description><![CDATA[
@@ -12,12 +12,14 @@
 
   <change-notes><![CDATA[
         COLA Tests IDEA Plugin:
+
+        - Update for IDEA 15
         - Includes full Gherkin support
     ]]>
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="141"/>
+  <idea-version since-build="143"/>
 
   <depends>com.intellij.modules.lang</depends>
 
