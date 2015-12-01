@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/cola-tests-application.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/cola-tests-messages.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/log4j.xml" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
