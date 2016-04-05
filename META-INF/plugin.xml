@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.github.bmsantos.idea.cola</id>
   <name>COLA Tests</name>
-  <version>0.5.0</version>
+  <version>0.5.5</version>
   <vendor email="bmrosantos@gmail.com" url="https://github.com/bmsantos/cola-idea-plugin">COLA Tests</vendor>
 
   <description><![CDATA[
@@ -13,9 +13,12 @@
   <change-notes><![CDATA[
         COLA Tests IDEA Plugin:
 
-        - COLA Tests 0.5.0 support
-        - Update for IDEA 15
-        - Includes full Gherkin support
+        - COLA Tests 0.5.5 support
+        - Update for IDEA 2016
+
+        Release details: https://github.com/bmsantos/cola-tests/wiki/Releases
+        Documentation & Tutorials: https://github.com/bmsantos/cola-tests/wiki
+        Examples: https://github.com/bmsantos/cola-examples
     ]]>
   </change-notes>
 
